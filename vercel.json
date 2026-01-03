@@ -1,15 +1,17 @@
 {
   "version": 2,
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "crons": [
+  "builds": [
     {
-      "path": "/api/cron/sendDigest",
-      "schedule": "0 9 * * *"
+      "src": "api/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "api/index.js"
     }
   ]
 }
+
 
