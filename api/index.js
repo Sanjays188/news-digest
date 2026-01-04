@@ -15,7 +15,7 @@ app.use(async (req, res, next) => {
 });
 
 // routes
-//app.use("/api/auth", require("./auth"));
+app.use("/api/auth", require("./auth"));
 // app.use("/api/user", require("./user"));
 // app.use("/api/digest", require("./digest"));
 // app.use("/api/cron", require("./cron"));
