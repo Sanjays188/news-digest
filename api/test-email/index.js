@@ -7,13 +7,16 @@ router.get("/", async (req, res) => {
     await sendEmail(
       "sanjays100111@gmail.com",
       "Test Email from Vercel",
-      "<h1>Email working 🎉</h1><p>If you see this, Brevo is configured correctly.</p>"
+      "<h1>Email working 🎉</h1>"
     );
 
     res.send("Test email sent successfully ✅");
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Email failed ❌");
+    console.error("EMAIL ERROR:", err?.response?.body || err.message || err);
+    res.status(500).json({
+      message: "Email failed ❌",
+      error: err?.response?.body || err.message || err
+    });
   }
 });
 
