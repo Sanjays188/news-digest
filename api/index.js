@@ -19,6 +19,8 @@ app.use("/api/auth", require("./auth"));
 app.use("/api/user", require("./user"));
 app.use("/api/digest", require("./digest"));
 app.use("/api/cron", require("./cron"));
+app.use("/api/test-email", require("./test-email"));
+
 
 // test
 app.get("/", (req, res) => {
