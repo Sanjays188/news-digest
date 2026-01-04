@@ -4,6 +4,7 @@ const connectDB = require("../lib/db");
 const app = express();
 app.use(express.json());
 
+// connect DB once per serverless container
 let isConnected = false;
 app.use(async (req, res, next) => {
   if (!isConnected) {
@@ -13,8 +14,15 @@ app.use(async (req, res, next) => {
   next();
 });
 
+// routes
+app.use("/api/auth", require("./auth"));
+app.use("/api/user", require("./user"));
+app.use("/api/digest", require("./digest"));
+app.use("/api/cron", require("./cron"));
+
+// test
 app.get("/", (req, res) => {
-  res.json({ status: "API working" });
+  res.send("Backend running successfully 🚀");
 });
 
 module.exports = app;
